@@ -1,6 +1,5 @@
 学习笔记
 
-
 # 递归 
  1. 终止条件 terminator 
  2. 当前层处理逻辑 Process current level logic
@@ -14,9 +13,9 @@
 总结： 写递归程序，先自顶向下，先写好terminator终止条件防止程序进入死循环；发现重复子问题；处理好当前层业务逻辑，并考虑必要的**剪枝条件**(最优化减枝， 可行性减枝)。
 
 # 分治 (divide and conquer)
+
 ### 核心思想： 
-其实也是递归，替换递归第4步为合并结果。
-**关键点**： 寻找重复子问题，终止条件是再也没有重复子问题需要解决。
+其实也是递归，替换递归第4步为合并结果。寻找重复子问题，终止条件是再也没有重复子问题需要解决。
 ### 快速排序
 1. 核心思想使用第一个元素或者最后一个元素座位povit元素分割数组，使得[0, povit-1] povit [povit + 1, lenght -1]
 2. [0, povit-1]数据都小于povit， [povit+1, length-1]都大于povit元素。
@@ -29,11 +28,41 @@
 3. 递归开始回来了，合并数据，申请临时合并空间保存数据。
 4. 把临时合并后数据返回去。
 
-例题： 快速幂
-
 # 回溯 (Backtracing)
 ### 核心思想： 
-寻找terminator条件，链表有两种返回截止条件，
-a. left == NULL && right == NULL:  访问到子叶子就返回
-b. root == NULL 返回即访问到空节点返回
+寻找terminator条件，链表有两种返回截止条件  
+1. left == NULL && right == NULL:  访问到子叶子就返回
+2. root == NULL 返回即访问到空节点返回
 
+
+# 练习题易总结
+[78 子集](https://leetcode-cn.com/problems/subsets/)  
+核心思想  
+回溯思想：进入下一层时，传递i+1做为start起点，**保证组合问题没有重复组合**
+``` C
+    for (int i = start; i < numsSize; i++) {
+        stk[dep++] = nums[i];
+        /* drill down*/
+        Helper(nums, numsSize, range, i + 1,  stk, dep);
+        /* reverse current state */
+        stk[--dep] = 0;
+    }
+```
+
+[226 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/)  
+核心思想  
+分治思想，向拆分子问题， 后合并左右子树  
+
+[98 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)  
+核心思想
+1. 打擂台， 排序的思想， 使用二叉搜索树中序升序性质
+2. 二分思想，自顶向下: left child  <= parent < right child, 使用二分思想，parent值作为左子树的upper bound, 右子树的lower bound，逐步缩小区间范围，自顶向下验证。
+3. 自底向上  
+
+[111 二叉树最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)  
+核心思想  
+分治思想： 分别求左右子树的最小深度, 递归返回时高度+1, 合并结果时比较最小高度返回。**递归终止条件必须为子节点，这个不同于最大深度题**
+
+[50 Pow](https://leetcode-cn.com/problems/powx-n/)  
+核心思想
+分治思想：分O(logN)， 合并时处理奇偶情况，注意题目有阶乘为-n情况，以及边界值2^0 = 1情况。
