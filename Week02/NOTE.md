@@ -113,4 +113,7 @@ void Visit(struct Node *n)
     *  DFS性能不足情况下，使用BFS同时将多个起点塞入队列，同时齐步走遍历速度要快于DFS。
 3. **双端BFS**
 
-
+# 练习题易总结
+[面试题 04.01. 节点间通路](https://leetcode-cn.com/problems/route-between-nodes-lcci/)
+核心思想  
+有向图，BFS查看起点与终点间是否存在路径； 平行边处理去重，环路最后导致结果无法找到。
