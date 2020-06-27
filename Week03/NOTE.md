@@ -70,18 +70,18 @@ void Divide_and_Conquer(problem, param1, param2,...)
 例题 [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) 
 
 # 练习题易总结
-[169 多数元素](https://leetcode-cn.com/problems/majority-element/)
+[169 多数元素](https://leetcode-cn.com/problems/majority-element/)  
 核心思想  
-1. 分治思想: 
-       截止: left == right 此时只有一个元素  
+1. 分治:   
+      截止: left == right 此时只有一个元素。 
       分割：[left, m], [m+1, right] 都是闭区间
       合并: 将左右两个分割区间的返回的自区间的最大数，在合并区间[left, right]内统计最大元素个数。
 2. 摩尔投票法：  
  
 [78 子集](https://leetcode-cn.com/problems/subsets/)  
-[77 组合](https://leetcode-cn.com/problems/combinations/)
+[77 组合](https://leetcode-cn.com/problems/combinations/)  
 核心思想  
-回溯思想：进入下一层时，传递**i+1**做为start起点，**保证组合问题没有重复组合**，控制好组合的深度就可以了。
+回溯：进入下一层时，传递**i+1**做为start起点，**保证组合问题没有重复组合**，控制好组合的深度就可以了。
 ``` C
     for (int i = start; i < numsSize; i++) {
         stk[dep++] = nums[i];
@@ -92,12 +92,12 @@ void Divide_and_Conquer(problem, param1, param2,...)
     }
 ```
 [51 N皇后](https://leetcode-cn.com/problems/n-queens/)  
-核心思想
-回溯法:进入下一级回溯函数的条件是不受到其他皇后攻击（正反对角线，不在同一行和列)
+核心思想  
+回溯:进入下一级回溯函数的条件是不受到其他皇后攻击（正反对角线，不在同一行和列), 截止条件：全部皇后都有位置可占。
 
 [226 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/)  
 核心思想  
-分治思想，向拆分子问题， 后合并左右子树  
+分治，先拆分子问题（左右子树互换)， 后合并左右子树 
 
 [98 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)  
 核心思想
@@ -107,11 +107,11 @@ void Divide_and_Conquer(problem, param1, param2,...)
 
 [111 二叉树最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)  
 核心思想  
-分治思想： 分别求左右子树的最小深度, 递归返回时高度+1, 合并结果时比较最小高度返回。**递归终止条件必须为子节点，这个不同于最大深度题**
+分治： 分别求左右子树的最小深度, 递归返回时高度+1, 合并结果时比较最小高度返回。**递归终止条件必须为子节点，这个不同于最大深度题**
 
 [50 Pow](https://leetcode-cn.com/problems/powx-n/)  
 核心思想
-分治思想：分O(logN)， 合并时处理奇偶情况，注意题目有阶乘为-n情况，以及边界值2^0 = 1情况。
+分治：分O(logN)， 合并时处理奇偶情况，注意题目有阶乘为-n情况，以及边界值2^0 = 1情况。
 
 ## 编程技巧总结
 - 对角线坐标，正反对角线。
