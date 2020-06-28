@@ -69,7 +69,13 @@ void Divide_and_Conquer(problem, param1, param2,...)
 
 例题 [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) 
 
-# 练习题易总结
+# 练习题总结
+[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)  
+核心思想:  
+1. 递归同一层相同元素需要去重跳过  
+2. 使用used[]数组标记已经是使用的元素
+3. 去重时需要used[i]元素没有使用过。否则按照1条件，无法分清楚时在递归深度上判断还是同一递归层。  
+   
 [169 多数元素](https://leetcode-cn.com/problems/majority-element/)  
 核心思想  
 1. 分治:   
