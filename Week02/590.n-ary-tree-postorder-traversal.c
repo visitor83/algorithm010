@@ -76,5 +76,109 @@ int* postorder(struct Node* root, int* returnSize)
   *returnSize = g_ansCnt;
   return g_ans;
 }
+
+/*
+  迭代版本
+*/
+/**
+ * Definition for a Node.
+ * struct Node {
+ *     int val;
+ *     int numChildren;
+ *     struct Node** children;
+ * };
+ */
+#define MAXN  1024
+typedef struct tagStack {
+  struct Node *n;
+  struct tagStack *next;
+} Stack;
+
+typedef struct tagList {
+  int val;
+  struct tagList * next;
+} List;
+
+void Push(Stack *head, struct Node *n)
+{
+  Stack *stk = calloc(1, sizeof(Stack));
+  stk->n = n;
+  stk->next = head->next;
+  head->next = stk;
+}
+
+Stack * Pop(Stack *head)
+{
+  Stack *stk;
+  stk = head->next;
+  if (stk == NULL) {
+    return NULL;
+  }
+  head->next = stk->next;
+  return stk;
+}
+
+bool IsEmpty(Stack *head)
+{
+  return head->next == NULL ? true : false;
+}
+
+List *NewList(int val)
+{
+  List *tmp = calloc(1, sizeof(List));
+  tmp->val = val;
+  return tmp;
+}
+
+void InsertHead(List *head, int val)
+{
+  List *newone = NewList(val);
+ 
+  newone->next = head->next;
+  head->next = newone;
+}
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* postorder(struct Node* root, int* returnSize)
+{
+  Stack *head, *cur;
+  struct Node *node;
+  List dmy;
+  int *ans;
+  int ansCnt;
+
+  head = calloc(1, sizeof(Stack));
+  dmy.next = NULL;
+
+  ansCnt = 0;
+  if (!root) {
+    *returnSize = 0;
+    ans = calloc(1, sizeof(int));
+    return ans;
+  }
+
+  Push(head, root);
+  while (!IsEmpty(head)) {
+    cur = Pop(head);
+    node = cur->n;
+    InsertHead(&dmy, node->val);
+    ansCnt++;
+    for (int i = 0; i < node->numChildren; i++) {
+      Push(head, node->children[i]);
+    }
+  }
+
+  List *p = dmy.next;
+  int i = 0;
+  ans = calloc(ansCnt, sizeof(int) );
+  while (p != NULL ) {
+    ans[i++] = p->val;
+    printf("%d ", p->val);
+    p = p->next;
+  }
+  *returnSize = ansCnt;
+  return ans;
+}
 // @lc code=end
 
