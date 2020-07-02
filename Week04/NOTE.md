@@ -4,6 +4,7 @@
 # 二分查找
 
 ## 基本思想
+[二分简介](https://leetcode.com/articles/introduction-to-binary-search/)
 1. 有序或者部分有序， O(logN)时间复杂度
 
 ## 应用场景
