@@ -133,6 +133,13 @@ public int binarySearch(int[] nums, int target) {
 3. 搜索目标： mval 满足条件2的下边界值
 4. 截止条件： 搜索空间[1, x]， 截止条件: low <= high
 
+[面试题 08.03. 魔术索引](https://leetcode-cn.com/problems/magic-index-lcci/)  
+核心思想：  
+1. 截止条件 lo > hi返回没找到-1
+2. 搜素空间[0, numsSize - 1]
+3. 二分判断条件nums[m] 是否等于m索引。
+4. nums有重复值则需要向m两边扩展。
+
 
 # BFS使用队列数据结构
 
@@ -144,7 +151,7 @@ QDeq:
 QIsEmpty:  
 QGetSize:
 
-``` C
+```C
 typedef struct tagNode {
     char *arr;
     struct tagNode *next;
