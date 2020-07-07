@@ -138,7 +138,18 @@ public int binarySearch(int[] nums, int target) {
 1. 截止条件 lo > hi返回没找到-1
 2. 搜素空间[0, numsSize - 1]
 3. 二分判断条件nums[m] 是否等于m索引。
-4. nums有重复值则需要向m两边扩展。
+4. nums有重复值则需要**根据当前nums[i]与i的关系确定下一步搜素范围**
+
+[658. 找到 K 个最接近的元素](https://leetcode-cn.com/problems/find-k-closest-elements) 
+思想：  
+1. 左右两个边界处理
+2. 二分求取目标值，双指针搜索[x - arr[m], x + arr[m]]
+
+[162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)  
+1. 二分比较条件：
+   - nums[i] < nums[i+1], [m + 1, hi]
+   - nums[i] >= nums[i+1], [lo   , m] ??
+2. 截止条件 ==lo == hi==， 每次比较有2个元素。
 
 
 # BFS使用队列数据结构

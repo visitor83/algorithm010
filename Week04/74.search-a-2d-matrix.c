@@ -16,7 +16,6 @@ bool searchMatrix(int** matrix, int matrixSize, int* matrixColSize, int target)
         return false;
     }
 
-    //printf("xxxx\n");
     tR = matrixSize;
     tC = matrixColSize[0];
     i = 0;

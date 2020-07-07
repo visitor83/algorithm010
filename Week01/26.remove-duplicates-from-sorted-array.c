@@ -27,3 +27,23 @@ int removeDuplicates(int* nums, int numsSize)
   }
   return ansLength;
 }
+/* @ 2020/07/07  */
+int removeDuplicates(int* nums, int numsSize)
+{
+    int i, j;
+    
+    if (numsSize == 0) {
+        return 0;
+    }
+
+    i = 0;
+    j = 1;
+    while (j < numsSize) {
+        if (nums[j] != nums[i]) {
+            i++;
+            nums[i] = nums[j];
+        }
+        j++;
+    }
+    return  i + 1;
+}
