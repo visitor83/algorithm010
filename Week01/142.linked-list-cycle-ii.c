@@ -5,6 +5,39 @@
  *     struct ListNode *next;
  * };
  */
+
+/*
+ 好的写法*/
+
+ struct ListNode *detectCycle2(struct ListNode *head) 
+{
+    struct ListNode * fast, *slow;
+
+    if (!head || !head->next) {
+        return false;
+    }
+
+    fast = head; 
+    slow = head;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            break;
+        }
+    }    
+    if (fast == NULL || fast->next == NULL) {
+        return NULL;
+    }
+
+    struct ListNode *p1 = head, *p2 = slow;
+    while (p1 != p2) {
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+    return p1;
+}
+
 struct ListNode *detectCycle(struct ListNode *head) 
 {
   struct ListNode *slow, *fast;
