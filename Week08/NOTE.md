@@ -79,6 +79,11 @@ void InsertSort(int *a, int numsSize) {
 ```C 
 void mergeSort(int *nums, int lo, int hi) {
     int mid;
+    // 终止条件空间为0
+    if (lo >= hi) {
+        //return num[lo];
+        return ;
+    }
 
     mid = lo + ((hi - lo) >> 1);
     mergeSort(nums, lo, m); mergeSort(nums, m + 1, hi);
@@ -93,6 +98,8 @@ void mergeSort(int *nums, int lo, int hi) {
         }
     }
     // 那个子数组还有剩余
+    start = i, end = m;
+    if (j <= hi) { start = j; end = hi;}
 
     // 将剩余数据拷贝到临时数组
     while (start <= end) {
