@@ -3,11 +3,11 @@
 
 # 位运算
 
-1. n & (n-1)  第一个n为1的BIT位清零
+1. n & (n-1)  第一个n为1的BIT位清零  
 [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/)  
 思路：  
-负数情况，必须使用移位操作，高位才会正确补符号位。
-[231.2的幂] (https://leetcode-cn.com/problems/power-of-two/)  
+负数情况，必须使用移位操作，高位才会正确补符号位。  
+[231.2的幂](https://leetcode-cn.com/problems/power-of-two/)  
 思路:  
 求是否与一个1存在，通过$n*(n-1)$降低时间复杂度
 
