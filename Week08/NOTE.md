@@ -113,3 +113,7 @@ void mergeSort(int *nums, int lo, int hi) {
 
 ## 快速排序 $nlog(n)$
 1. 是否稳定？
+
+
+- [ ] [力扣排行榜](https://leetcode-cn.com/problems/design-a-leaderboard/)
+- [ ] 快速排序代码
