@@ -66,7 +66,9 @@
 
 # 单调栈
 寻找临近元素的下一个最大值，或者最小值，保持栈内元素单调递增或递减。
-
+(32. 最长有效括号)[https://leetcode-cn.com/problems/longest-valid-parentheses/]  
+思路：  
+标记有效()对为*, 查找最长*连续子串
 
 # 滑动窗口
 

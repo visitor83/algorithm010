@@ -34,7 +34,38 @@ void setUnion(int a, int b) {
 
 
 ## 减枝
-
+[37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/)  
+思路:  
+通过同一行、列，$3X3$格子内相互冲突减枝。$3X3$冲突，先压缩左边在确定范围。
+```c
+bool Validate(char ** board, char **a, int x, int y, char val, 
+    int N)
+{
+    int i, j;
+    // row
+    for (i = 0; i < N; i++) {
+        if (a[x][i] == val )  {
+            return false;
+        }
+    }
+    // col
+    for (i = 0; i < N; i++) {
+        if (a[i][y] == val )  {
+            return false;
+        }
+    }
+    int x0, y0;
+    x0 = (x / 3 ) * 3; y0 = (y / 3) *3;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (a[x0 + i][y0+j] == val) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+```
 
 ## 启发式搜索
 BFS 模板普通队列替换为优先级队列。
