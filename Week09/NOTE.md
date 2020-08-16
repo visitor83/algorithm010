@@ -29,6 +29,8 @@
 - [X] 205.同构字符串  
   思路： 映射s[i], t[i]到同一个索引i+1，如果下次出出现字符s[i]或者t[i]查看是否之前映射关系变了。
 
+
+- [X] 680. 验证回文字符串II
 - [ ] [力扣排行榜](https://leetcode-cn.com/problems/design-a-leaderboard/)
 - [ ] 赛车
 - [ ] 通配符
