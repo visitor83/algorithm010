@@ -1,5 +1,5 @@
 # 知识点
-![知识点](https://github.com/visitor83/algorithm010/tree/master/Week10/algo.svg)
+![avatar](https://github.com/visitor83/algorithm010/tree/master/Week10/algo.svg)
 
 # 基础
 [X] 两数之和（简单）
