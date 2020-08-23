@@ -27,5 +27,21 @@ bool canJump(int* nums, int numsSize)
     }
     return false;
 }
+
+bool canJump(int* nums, int numsSize){
+    if (!nums || numsSize <=1) {
+        return true;
+    }
+    int endPos = numsSize - 1;
+    int j;
+
+    // 从j 开始向后跳 nums[j]步能跳到endPos
+    for ( j = endPos; j != -1; j--) {
+        if (nums[j] + j >= endPos) {
+            endPos = j;
+        }
+    }
+    return endPos == 0 ? true : false ;
+}
 // @lc code=end
 

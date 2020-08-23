@@ -9,140 +9,33 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */ 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <uthash.h>
+#define NMAX        2000
+int nthUglyNumber(int n) {
+    int *arr, *p2, *p3, *p5;
+    int nextNum;
 
-#define NFACTORS    3
-#define NUMS        2048
+    arr = calloc(NMAX, sizeof(int));
+    arr[0] = 1;
+    p2 = arr; p3 = arr; p5 = arr;
 
-typedef struct tagMap {
-    int val;
-    UT_hash_handle hh;
-} Map;
-
-typedef struct tagPQ {
-    int arr[NUMS];
-    int size;
-} PQ;
-
-PQ *HeapInit()
-{
-    PQ *pq = calloc(1, sizeof(PQ));
-    pq->size = 0;
-    return pq;
-}
-
-void Swap(PQ *pq, int i, int j)
-{
-    int t;
-    int *arr = pq->arr;
-    t = arr[i];  arr[i] = arr[j]; arr[j] = t;
-}
-
-/*
- * if a < b, return true;
- */
-int Less(PQ *pq, int a, int b)
-{
-    int *arr = pq->arr;
-    return arr[a] < arr[b] ? true : false;
-}
-
-void HeapPush(PQ *pq, int val)
-{
-    int k;
-
-    pq->arr[++pq->size] = val;
-    k = pq->size;
-    while (k > 1 && Less(pq, k, k / 2)) {
-        Swap(pq, k/2, k);
-        k = k / 2;
-    }
-}
-
-/*  pq->arr[0] is not used, sential element */
-int HeapPop(PQ *pq)
-{
-    int top, k, lchild, rchild, smallest;
-
-    /* swap the root and last elemnt, decrease the pq'size */
-    top = pq->arr[1];
-    Swap(pq, 1, pq->size);
-    pq->size--;
-
-    k = 1;
-    while ( k * 2  <= pq->size )  {
-        /* foud min of (lchild, rchild), the rchild < lchild */
-        lchild = k * 2;
-        rchild = k * 2 + 1;
-
-        smallest = lchild;
-        if ((rchild < pq->size) &&  Less(pq, rchild, lchild)) {
-            smallest = rchild;
+    nextNum = 1;
+    while (nextNum < n) {
+        // ????, ????
+        int temp = fmin((*p2) *2, fmin((*p3) * 3, (*p5) * 5));
+        arr[nextNum] = temp;
+        // arr [0.. nextNum] * ??p2, p3, p5, ???t *p2 > temp
+        while ( (*p2) * 2 <= temp) {
+            p2++;
         }
-
-        /* parent is not smaller than rchild or lchild */
-        if (!Less(pq, smallest, k)) {
-            break;
+        while ( (*p3) * 3 <= temp) {
+            p3++;
         }
-
-        Swap(pq, smallest, k);
-        k = smallest;
-    }
-    return top;
-}
-
-Map *g_map;
-
-int nthUglyNumber(int n)
-{
-    bool found = false;
-    int ansCnt;
-    int ans, popdata;
-    Map *ent;
-    PQ *pq;
-
-    if (n == 0 || n == 1) {
-        return n;
-    }
-    ansCnt = 0;
-    g_map = NULL;
-
-    pq = HeapInit();
-
-    HeapPush(pq, 1);
-    ent = calloc(1, sizeof(Map));
-    ent->val = 1;
-    HASH_ADD_INT(g_map, val, ent);
-
-    while (!found) {
-        popdata = HeapPop(pq);
-        ansCnt++;
-        printf("%d, ", popdata);
-        if (ansCnt == n) {
-            ans = popdata;
-            found = true;
-            break;
+        while ( (*p5) * 5 <= temp) {
+            p5++;
         }
-
-        int step[NFACTORS] = {2, 3, 5};
-        for (int i = 0; i < NFACTORS; i++) {
-            int searchVal = popdata * step[i];
-
-            HASH_FIND_INT(g_map, &searchVal, ent);
-            if (!ent) {
-                HeapPush(pq, searchVal);
-
-                ent = calloc(1, sizeof(Map));
-                ent->val = searchVal;
-                HASH_ADD_INT(g_map, val, ent);
-            }
-        }
+        nextNum++;
     }
-
-    return ans;
+    return arr[nextNum - 1];
 }
 
 /*
