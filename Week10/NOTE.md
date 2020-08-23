@@ -1,5 +1,5 @@
 # 知识点
-![](algorithm010/Week10/summary.png)
+![summary](./algo.svg)
 
 # 基础
 [X] 两数之和（简单）
