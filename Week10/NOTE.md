@@ -1,5 +1,6 @@
 # 知识点
-![avatar](https://pic.leetcode-cn.com/d447f96d20d1cfded20a5d08993b3658ed08e295ecc9aea300ad5e3f4466e0fe-file_1555699515174
+![知识点](algo.svg)
+
 # 基础
 [X] 两数之和（简单）
 [X] 20 有效的括号（简单）
