@@ -5,6 +5,8 @@
  */
 
 // @lc code=start
+
+
 int gR, gC;
 int dfs(int **arr, int x, int y, int *areaSize) {
     int dx[] = {1, -1, 0, 0   };
@@ -42,6 +44,7 @@ int maxAreaOfIsland(int** grid, int gridSize, int* gridColSize){
     }
     return ans;
 }
+
 
 // @lc code=end
 
