@@ -34,7 +34,7 @@ void setUnion(int a, int b) {
 
 
 ## 减枝
-[37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/)  
+- [ ] [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/)  
 思路:  
 通过同一行、列，$3X3$格子内相互冲突减枝。$3X3$冲突，先压缩左边在确定范围。
 ```c
@@ -61,6 +61,32 @@ bool Validate(char ** board, char **a, int x, int y, char val,
             if (a[x0 + i][y0+j] == val) {
                 return false;
             }
+        }
+    }
+    return true;
+}
+```
+
+- [X] [51. n皇后](https://leetcode-cn.com/problems/n-queens/)
+1. 思路： 回溯，每行尝试列上是否可以放置，可以放0~n 数组， 否则-1无效。
+2. 截止条件： 行达到 n 则有效解。
+3. 回溯条件： 每行上放置判断相同列，或者左撇，右捺是否有冲突，如下：
+```c
+bool Validate(int n, int *vis, int row, int col) {
+    int i, j;
+    for (i = 0; i < row; i++) {
+        if (vis[i] == col) {
+            return false;
+        }
+    }
+    for (i = row - 1, j = col + 1; j < n && i >= 0; i--, j++) {
+        if (vis[i] == j) {
+            return false;
+        }
+    }
+    for (i = row -1, j = col - 1; j >=0 && i >= 0; i--, j--) {
+        if (vis[i] == j) {
+            return false;
         }
     }
     return true;
